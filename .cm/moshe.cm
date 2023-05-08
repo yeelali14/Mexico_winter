@@ -12,10 +12,13 @@ config:
     users: ["EladKohavi", "ShakedZrihen"]
 
 automations:
-  my_changes:
+  my_changes111:
     if:
-      - false
+      - true
     run: 
       - action: add-label@v1
         args:
           label: 'eladush'
+      - action: set-required-approvals@v1
+        args:
+          approvals: 2
