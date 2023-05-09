@@ -16,9 +16,9 @@ automations:
     if:
       - true
     run: 
-      - action: set-required-approvals@v1
-        args:
-          approvals: 2
+#      - action: set-required-approvals@v1
+#        args:
+#          approvals: 2
       - action: add-label@v1
         args:
           label: 'eladush'
