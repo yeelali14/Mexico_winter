@@ -1,3 +1,3 @@
 # Mexico_winter
 
-kush kush
+Mexico in January was PERFECT!
