@@ -19,7 +19,7 @@ automations:
       - action: add-label@v1
         args:
           label: 'eladush'
-      - action: request-changes@v1
+      - action: add-comment@v1
         args:
           comment: |
             You have used deprecated API `oldFetch`, use `newFetch` instead.
