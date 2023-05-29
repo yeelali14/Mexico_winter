@@ -15,7 +15,6 @@ automations:
         args:
           label: '✅ Sonar: Clean Code'
           color: {{ colors.green }}
-      - action: approve@v1
       - action: add-comment@v1
         args:
           comment: |
