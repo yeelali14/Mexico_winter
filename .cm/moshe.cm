@@ -19,4 +19,4 @@ automations:
       - action: add-label@v1
         args:
           label: 'eladush'
-      - action: mergee@v1
+      - action: merge@v1
