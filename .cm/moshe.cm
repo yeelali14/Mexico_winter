@@ -20,7 +20,3 @@ automations:
         args:
           label: 'eladush'
       - action: merge@v1
-      - action: request-changes@v1
-        args:
-          comment: |
-            You have used deprecated API `oldFetch`, use `newFetch` instead.
