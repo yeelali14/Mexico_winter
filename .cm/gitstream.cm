@@ -17,3 +17,10 @@ automations:
       - action: add-label@v1
         args:
           label: 'eladush ha mega mush'
+  check_label_type:
+    if:
+      - true
+    run:
+      - action: explain-code-experts@v1
+        args:
+          gt: 10
