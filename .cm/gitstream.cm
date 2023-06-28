@@ -19,7 +19,7 @@ automations:
           label: 'eladush ha mega mush'
   check_label_type:
     if:
-      - true
+      - false
     run:
       - action: explain-code-experts@v1
         args:
