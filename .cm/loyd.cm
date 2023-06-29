@@ -18,7 +18,7 @@ automations:
       - action: add-comment@v1
         args:
           comment: |
-            This PR passes the SonarCloud quality gate check and as been automatically approved.
+            This PR passes the SonarCloud quality gate check and as been bla bla approved.
 
 sonar: {{ pr | extractSonarFindings }}
 
