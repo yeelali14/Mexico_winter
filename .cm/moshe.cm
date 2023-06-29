@@ -19,3 +19,6 @@ automations:
       - action: add-label@v1
         args:
           label: 'eladush'
+      - action: add-comment@v1
+        args:
+          comment: 'mushmush'
