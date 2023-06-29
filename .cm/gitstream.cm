@@ -23,4 +23,4 @@ automations:
     run:
       - action: explain-code-experts@v1
         args:
-          gt: 5
+          gt: 15
