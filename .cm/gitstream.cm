@@ -20,11 +20,3 @@ automations:
       - action: add-comment@v1
         args:
           comment: 'kushkush'
-  
-  check_label_type:
-      if:
-        - true
-      run:
-        - action: explain-code-experts@v1
-          args:
-            gt: 12
