@@ -27,3 +27,6 @@ automations:
         - action: explain-code-experts@v1
           args:
             gt: 11
+        - action: add-comment@v1
+          args:
+            comment: '11'
