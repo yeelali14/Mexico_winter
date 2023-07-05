@@ -26,7 +26,7 @@ automations:
       run:
         - action: explain-code-experts@v1
           args:
-            gt: 15
+            lt: 14
         - action: add-comment@v1
           args:
             comment: '11'
