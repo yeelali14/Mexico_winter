@@ -11,14 +11,20 @@ config:
   admin:
     users: ["EladKohavi", "ShakedZrihen"]
 
+# -*- mode: yaml -*-
 automations:
-  my_changes111:
+  label_missing_jira_info:
+    # Triggered for PRs that don't have either a Jira ticket number in the title,
+    # or a link to a Jira ticket in the PR description.
     if:
-      - {{ pr.title | includes(term='elad') }} 
-    run: 
+      - {{ files | match(regex=r/Standard\/label-missing-jira\//) | every }}
+      - {{ not (has.jira_ticket_in_title or has.jira_ticket_in_desc) }}
+    run:
       - action: add-label@v1
         args:
-          label: 'eladush'
-      - action: add-comment@v1
-        args:
-          comment: 'mushmush'
+          label: "missing-jira"
+          color: 'F6443B'
+
+has:
+  jira_ticket_in_title: {{ pr.title | includes(regex=r/\b[A-Za-z]+-\d+\b/) }}
+  jira_ticket_in_desc: {{ pr.description | includes(regex=r/atlassian.net\/browse\/\w{1,}-\d{3,4}/) }}
