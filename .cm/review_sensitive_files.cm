@@ -2,7 +2,7 @@
 automations:
   # Assign special teams to review sensitive files. 
   # This requires the `sensitive` custom expression found at the bottom of this file.
-  review_sensitive_files:
+  review_sensitive_files_1:
     # For all files listed in the sensitive custom expression.
     if:
       - true
