@@ -1,11 +1,12 @@
-# -*- mode: yaml -*-
 automations:
-  review_sensitive_files_1:
-    # For all files listed in the sensitive custom expression.
+  estimated_time_to_review:
     if:
       - true
     run:
-      - action: add-comment@v1
+      - action: add-label@v1
         args:
-          comment: |
-            This PR affects one or more sensitive files and requires review from the security team.
+          label: "{{ calc.etr }} min review"
+          color: {{ 'E94637' if (calc.etr >= 20) else ('FBBD10' if (calc.etr >= 5) else '36A853') }}
+
+calc:
+  etr: {{ branch | estimatedReviewTime }}
