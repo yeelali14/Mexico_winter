@@ -1,32 +1,12 @@
-
-# -*- mode: yaml -*-
-
-manifest:
-  version: 1.0
-
-config:
-  ignore_files:
-    - 'package-lock.json'
-    - 'blabla.txt'
-    
 automations:
-  my_changes:
+  estimated_time_to_review:
     if:
-      - true
-    run: 
+      - {{ pr.labels | match(term='etr') }}
+    run:
       - action: add-label@v1
         args:
-          label: 'eladush ha mega mush'
-      - action: add-comment@v1
-        args:
-          comment: 'kushkush'
-  check_label_type:
-      if:
-        - true
-      run:
-        - action: explain-code-experts@v1
-          args:
-            lt: 14
-        - action: add-comment@v1
-          args:
-            comment: '11'
+          label: "{{ calc.etr }} min review"
+          color: {{ 'E94637' if (calc.etr >= 20) else ('FBBD10' if (calc.etr >= 5) else '36A853') }}
+
+calc:
+  etr: {{ branch | estimatedReviewTime }}
