@@ -12,7 +12,7 @@ automations:
 
   eladush_files:
     if:
-      - {{ files | match(term1='README.md') | some }}
+      - {{ files | intersection(list=['README.md']) | some }}
     run:
       - action: add-label@v1
         args:
