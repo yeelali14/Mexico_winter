@@ -18,8 +18,8 @@ automations:
         args:
           label: "KING!"
           color: {{ 'E94637' if (calc.etr >= 20) else ('FBBD10' if (calc.etr >= 5) else '36A853') }}
-      - action: merge@v1
+      - action: add-comment@v1
         args:
-          wait_for_all_checks: true
+          comment: {{ pr.checks }}
 calc:
   etr: {{ branch | estimatedReviewTime }}
