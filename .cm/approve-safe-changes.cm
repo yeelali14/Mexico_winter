@@ -11,8 +11,7 @@ automations:
           label: 'safe-change'
       - action: add-comment@v1
         args:
-          comment: |
-            {{ source.diff.files }}
+          comment: {{ source.diff.files }}
 
 # These custom expressions are used in the safe_changes automation
 is:
