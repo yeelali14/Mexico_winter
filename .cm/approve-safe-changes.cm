@@ -3,8 +3,7 @@ automations:
   safe_changes:
     # Triggered for any changes that only affect formatting, documentation, tests, or images
     if:
-      - {{ files | match(regex=r/Standard\/approve-safe-changes\//) | every }}
-      - {{ is.formatting or is.docs or is.tests or is.image }}
+      - true
     # Apply a safe change label, approve the PR and explain why in a comment.
     run: 
       - action: add-label@v1
@@ -13,7 +12,7 @@ automations:
       - action: add-comment@v1
         args:
           comment: |
-            This PR is considered a safe change and has been automatically approved.
+            {{ source.diff.files }}
 
 # These custom expressions are used in the safe_changes automation
 is:
