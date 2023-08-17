@@ -2,12 +2,12 @@ automations:
   estimated_time_to_review:
     on:
       - commit
-    if:
-      - true
+    if:      
+      - {{ not(branch.name | includes(regex=r/(^CU-[a-z0-9]+[-_].*)|(^dependabot.*)|(^renovate\/.*)|(.*hotfix-preparation.*)/)) }}
     run:
       - action: add-label@v1
         args:
-          label: "kushkush min review"
+          label: "swamm label"
           color: {{ 'E94637' if (calc.etr >= 20) else ('FBBD10' if (calc.etr >= 5) else '36A853') }}
 
   eladush_files:
