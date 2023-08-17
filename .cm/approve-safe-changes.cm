@@ -9,9 +9,7 @@ automations:
       - action: add-label@v1
         args:
           label: 'safe-change'
-      - action: add-comment@v1
-        args:
-          comment: {{ source.diff.files }}
+      - action: approve@v1
 
 # These custom expressions are used in the safe_changes automation
 is:
