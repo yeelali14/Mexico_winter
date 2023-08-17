@@ -1,22 +1,12 @@
 automations:
-  estimated_time_to_review:
-    on:
-      - commit
-    if:      
-      - {{ not(branch.name | includes(regex=r/(^CU-[a-z0-9]+[-_].*)|(^dependabot.*)|(^renovate\/.*)|(.*hotfix-preparation.*)/)) }}
-    run:
-      - action: add-label@v1
-        args:
-          label: "swamm label"
-          color: {{ 'E94637' if (calc.etr >= 20) else ('FBBD10' if (calc.etr >= 5) else '36A853') }}
 
   eladush_files:
     if:
-      - {{ files | intersection(list=['README.md']) | some }}
+      - {{ pr.labels | match(list=['Core', 'Mobile', 'UI']) | nope }}
     run:
       - action: add-label@v1
         args:
-          label: "KING!"
+          label: "no-labels-problem!"
           color: {{ 'E94637' if (calc.etr >= 20) else ('FBBD10' if (calc.etr >= 5) else '36A853') }}
 
 calc:
