@@ -8,6 +8,6 @@ jobs:
     steps:
       - name: Wait for 180 seconds
         run: |
-          echo "Waiting for 70 seconds..."
-          sleep 70
+          echo "Waiting for 180 seconds..."
+          sleep 180
           echo "Wait completed!"
