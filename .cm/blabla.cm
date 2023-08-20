@@ -10,7 +10,11 @@ automations:
           color: {{ 'E94637' if (calc.etr >= 20) else ('FBBD10' if (calc.etr >= 5) else '36A853') }}
       - action: add-reviewers@v1
         args:
+          wait_for_all_checks: true
           reviewers: ['yeelali14']
+      - action: merge@v1
+        args:
+          wait_for_all_checks: true
 
 calc:
   etr: {{ branch | estimatedReviewTime }}
