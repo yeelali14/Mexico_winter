@@ -4,7 +4,7 @@ automations:
     on:
       - label_added
     if:
-      - true
+      - {{ source.diff.files | match(list=['README.md']) | some }}
     run:
       - action: add-label@v1
         args:
