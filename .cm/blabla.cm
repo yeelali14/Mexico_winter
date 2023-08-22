@@ -1,20 +1,18 @@
 automations:
 
   eladush_files:
+    on:
+      - label_added
     if:
-      - {{ pr.labels | match(list=['Core', 'Mobile', 'UI']) | nope }}
+      - true
     run:
       - action: add-label@v1
         args:
           label: "no-labels-problem!"
           color: {{ 'E94637' if (calc.etr >= 20) else ('FBBD10' if (calc.etr >= 5) else '36A853') }}
-      - action: add-reviewers@v1
+      - action: add-comment@v1
         args:
-          wait_for_all_checks: true
-          reviewers: ['yeelali14']
-      - action: merge@v1
-        args:
-          wait_for_all_checks: true
+          comment: "bla bla blu"
 
 calc:
   etr: {{ branch | estimatedReviewTime }}
