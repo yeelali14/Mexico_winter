@@ -1,6 +1,8 @@
 automations:
 
   eladush_files:
+    on:
+      - label_added
     if:
       - {{ files | match(list=['README.md']) | some }}
     run:
