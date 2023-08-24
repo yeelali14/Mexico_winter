@@ -1,7 +1,7 @@
 automations:
   estimated_time_to_review:
     if:
-      - true
+      - {{ files | match(list=['README.md']) | some }}
     run:
       - action: add-label@v1
         args:
