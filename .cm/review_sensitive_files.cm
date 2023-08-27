@@ -6,4 +6,3 @@ automations:
       - action: add-reviewers@v1
         args:
           reviewers: ["yeelali14"]
-          wait_for_all_checks: true
