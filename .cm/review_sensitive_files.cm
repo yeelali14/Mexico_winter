@@ -7,7 +7,6 @@ automations:
         args:
           reviewers: ["yeelali14"]
           wait_for_all_checks: true
-      - action: invoke-github-action@v1
+      - action: add-label@v1
         args:
-          workflow: "yeelali14"
-          owner: "owner"
+          label: "jkfhgdfsjkhgdfsjkhdgs"
