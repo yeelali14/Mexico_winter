@@ -4,12 +4,12 @@ manifest:
 automations:
   label_unresolved_threads:  
     if:  
-      - {{ pr.unresolved_threads }}
+      - true
     run:
-      - action: add-label@v1
+      - action: invoke-github-action@v1
         args:
-          label: {{ pr.unresolved_threads }} Unresolved Thread(s)
-          color: {{ colors.yellow }}
-      
-colors:
-  yellow: 'fbca04'
+          owner: EladKohavi
+          repo: Mexico_winter
+          workflow: .github/workflows/example.yml
+          ref: "main"
+          inputs: {{ inputs_var | dump }}
