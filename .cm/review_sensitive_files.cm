@@ -4,11 +4,11 @@ manifest:
 automations:
   label_unresolved_threads:  
     if:  
-      - {{ pr.unresolved_threads }}
+      - {{ pr.labels }}
     run:
       - action: add-label@v1
         args:
-          label: {{ pr.unresolved_threads }} Unresolved Thread(s)
+          label: {{ pr.labels }} Unresolved Label(s)
           color: {{ colors.yellow }}
       
 colors:
