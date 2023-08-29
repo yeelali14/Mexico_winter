@@ -11,5 +11,5 @@ automations:
           owner: EladKohavi
           repo: Mexico_winter
           workflow: .github/workflows/example.yml
-          ref: "main"
+          ref: main
           inputs: {{ inputs_var | dump }}
