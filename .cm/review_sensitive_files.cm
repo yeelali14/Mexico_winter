@@ -8,7 +8,7 @@ automations:
     run:
       - action: invoke-github-action@v1
         args:
-          owner: EladKohavi
+          owner: Moshe
           repo: Mexico_winter
           workflow: .github/workflows/example.yml
           ref: main
