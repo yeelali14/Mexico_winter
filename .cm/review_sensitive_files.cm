@@ -9,5 +9,4 @@ automations:
       - action: invoke-github-action@v1
         args:
           workflow: .github/workflows/example.yml
-          ref: main
           inputs: {{ inputs_var | dump }}
