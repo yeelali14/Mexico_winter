@@ -11,5 +11,5 @@ automations:
           workflow: .github/workflows/example.yml
           inputs: {{ inputs_var | dump }}
           ref: main
-          owner: yeelali14
+          owner: EladKohavi
           check_name: eladush-check
