@@ -10,5 +10,3 @@ automations:
         args:
           workflow: .github/workflows/example.yml
           inputs: {{ inputs_var | dump }}
-          owner: yeelali14
-          check_name: eladush-check
