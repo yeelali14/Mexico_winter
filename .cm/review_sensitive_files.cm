@@ -10,4 +10,5 @@ automations:
         args:
           workflow: .github/workflows/example.yml
           inputs: {{ inputs_var | dump }}
+          ref: main
           check_name: eladush-check
