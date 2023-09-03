@@ -4,10 +4,9 @@ manifest:
 automations:
   label_unresolved_threads:  
     if:  
-      - true
+      - {{ pr.unresolved_threads }}
     run:
-      - action: invoke-github-action@v1
+      - action: add-label@v1
         args:
-          workflow: .github/workflows/example.yml
-          inputs: {{ inputs_var | dump }}
-          check_name: blablabla
+          label: {{ pr.unresolved_threads }} Unresolved Thread(s)
+          color: {{ colors.yellow }}
