@@ -2,7 +2,7 @@ automations:
 
   eladush_files:
     if:
-      - {{ files | match(list=['README.md']) | some }}
+      - moshe
     run:
       - action: add-label@v1
         args:
