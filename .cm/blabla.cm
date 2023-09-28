@@ -2,15 +2,15 @@ automations:
 
   eladush_files:
     if:
-      - moshe
+      - true
     run:
       - action: add-label@v1
         args:
           label: "no-labels-problem!"
           color: {{ 'E94637' if (calc.etr >= 20) else ('FBBD10' if (calc.etr >= 5) else '36A853') }}
-      - action: add-comment@v1
+      - action: explain-code-experts@v1
         args:
-          comment: bla bla blu!!
+          gt: moshe
 
 calc:
   etr: {{ branch | estimatedReviewTime }}
