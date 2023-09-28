@@ -2,7 +2,8 @@ automations:
 
   eladush_files:
     if:
-      - true
+      - {{ pr.labels | match(list=['Core', 'Mobile', 'UI']) | some }}
+      - {{ pr.approvals | length > 0 }}
     run:
       - action: add-label@v1
         args:
@@ -10,7 +11,7 @@ automations:
           color: {{ 'E94637' if (calc.etr >= 20) else ('FBBD10' if (calc.etr >= 5) else '36A853') }}
       - action: add-comment@v1
         args:
-          comment: Welcome {{branch.author_name}}!
+          comment: Welcome {{branch.author_name}}
 
 calc:
   etr: {{ branch | estimatedReviewTime }}
