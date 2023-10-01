@@ -2,7 +2,6 @@ on:
   - label_added
 
 automations:
-
   eladush_files:
     if:
       - {{ pr.labels | match(list=['Core', 'Mobile', 'UI']) | some }}
