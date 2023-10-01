@@ -1,5 +1,4 @@
 on:
-  - commit
   - label_added
 
 automations:
