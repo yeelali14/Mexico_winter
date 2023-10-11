@@ -11,6 +11,7 @@ automations:
       - action: add-reviewers@v1
         args:
           reviewers: {{ repo | codeExperts(gt=10) }}
+          wait_for_all_checks: true
       - action: explain-code-experts@v1 
         args:
           gt: 10 
