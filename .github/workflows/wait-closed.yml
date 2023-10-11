@@ -6,8 +6,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Wait for 180 seconds
+      - name: Wait for 30 seconds
         run: |
-          echo "Waiting for 180 seconds..."
-          sleep 180
+          echo "Waiting for 30 seconds..."
+          sleep 30
           echo "Wait completed!"
