@@ -1,6 +1,3 @@
-on:
-  - label_added
-
 automations:
   eladush_files:
     if:
