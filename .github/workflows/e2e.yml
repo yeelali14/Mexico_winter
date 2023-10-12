@@ -1,18 +1,38 @@
-name: Update Check Run
+name: Manage a Check Run
 on: pull_request
 
-
 jobs:
-  create-check-run:
+  manage_commit_check_lifecycle:
+    name: Create/Update a commit Check Run
     runs-on: ubuntu-latest
+    timeout-minutes: 15
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
-      - name: Create Check Run
-        uses: peter-evans/create-check@v1
+      - name: Create a check run 
+        uses: actions/github-script@v3
+        id: invoke-check
+        env:
+          LINWEB_COMMIT_SHA: ${{ github.event.client_payload.commit_sha }}
+          CHECK_RESULT: ${{ github.event.client_payload.check_result }}
         with:
-          name: Run e2e
-          conclusion: ${{ github.event.inputs.status }}
-          completed: false
+          script: |
+            const data = {
+              head_sha: process.env.LINWEB_COMMIT_SHA,
+              status: process.env.CHECK_RESULT ? 'completed' : 'in_progress',
+              conclusion: process.env.CHECK_RESULT,
+              check_name: 'cypress-e2e',
+              owner: 'linear-b',
+              repo: 'linweb'
+            };
+            
+            core.info(`No existing check, creating a new one with status ${data.status} and conclusion: ${data.conclusion}`);
+            const result = await github.checks.create({
+              owner: data.owner,
+              repo: data.repo,
+              name: data.check_name,
+              status: data.status,
+              head_sha: data.head_sha,
+              ...(data.conclusion ? {conclusion: data.conclusion} : {})
+            });
+            
+            return result.data;
