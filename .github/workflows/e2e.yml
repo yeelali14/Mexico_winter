@@ -1,3 +1,4 @@
+name: Kishkush
 on: pull_request
 
 jobs:
