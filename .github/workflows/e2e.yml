@@ -1,11 +1,5 @@
 name: Update Check Run
-on:
-  workflow_dispatch:
-    inputs:
-      status:
-        description: 'Current status of the action'
-        required: true
-        default: 'neutral'
+on: pull_request
 
 
 jobs:
