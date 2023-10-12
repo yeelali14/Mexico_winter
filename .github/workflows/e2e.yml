@@ -1,9 +1,9 @@
-name: Manage a Check Run
+name: checks
 on: pull_request
 
 jobs:
   manage_commit_check_lifecycle:
-    name: Create/Update a commit Check Run
+    name: e2e
     runs-on: ubuntu-latest
     timeout-minutes: 15
 
@@ -21,8 +21,8 @@ jobs:
               status: process.env.CHECK_RESULT ? 'completed' : 'in_progress',
               conclusion: process.env.CHECK_RESULT,
               check_name: 'cypress-e2e',
-              owner: 'linear-b',
-              repo: 'linweb'
+              owner: 'EladKohavi',
+              repo: 'Mexico_winter'
             };
             
             core.info(`No existing check, creating a new one with status ${data.status} and conclusion: ${data.conclusion}`);
