@@ -24,15 +24,18 @@ jobs:
               owner: 'EladKohavi',
               repo: 'Mexico_winter'
             };
-            
-            core.info(`No existing check, creating a new one with status ${data.status} and conclusion: ${data.conclusion}`);
-            const result = await github.checks.create({
-              owner: data.owner,
-              repo: data.repo,
-              name: data.check_name,
-              status: data.status,
-              head_sha: data.head_sha,
-              ...(data.conclusion ? {conclusion: data.conclusion} : {})
-            });
-            
-            return result.data;
+
+            try {
+              const result = await github.checks.create({
+                owner: data.owner,
+                repo: data.repo,
+                name: data.check_name,
+                status: data.status,
+                head_sha: data.head_sha,
+                ...(data.conclusion ? {conclusion: data.conclusion} : {})
+              });
+              
+              return result.data;
+            } catch (err) {
+              core.setFailed(`Request failed with error ${err}`);
+            }
