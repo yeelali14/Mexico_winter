@@ -1,63 +1,15 @@
-name: Manage a Check Run
-
-on: [pull_request]
+on:
+  pull_request:
+    types: [synchronize]
 
 jobs:
-  manage_commit_check_lifecycle:
-    name: Create/Update a commit Check Run
+  job_1:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
-
-    if: github.event.client_payload.commit_sha
     steps:
-      - name: Create a check run on linweb
-        uses: actions/github-script@v3
-        id: invoke-check
-        env:
-          LINWEB_COMMIT_SHA: ${{ github.event.client_payload.commit_sha }}
-          CHECK_RESULT: ${{ github.event.client_payload.check_result }}
-        with:
-          script: |
-            const data = {
-              head_sha: process.env.LINWEB_COMMIT_SHA,
-              status: process.env.CHECK_RESULT ? 'completed' : 'in_progress',
-              conclusion: process.env.CHECK_RESULT,
-              check_name: 'cypress-e2e',
-              owner: 'EladKohavi',
-              repo: 'Mexico_winter'
-            };
-            core.info(`Managing a check run in linweb. sha: ${data.head_sha}, conclusion: ${data.conclusion}`);
-            try {
-              const existing = await github.checks.listForRef({
-                owner: data.owner,
-                repo: data.repo,
-                ref: data.head_sha,
-                check_name: data.check_name,
-                filter: 'latest'
-              });
-
-              if(existing.data && existing.data.length) {
-                core.info(`Found an existing check, updating it's status to ${data.status} with conclusion: ${data.conclusion}`);
-                const updated = await github.checks.update({
-                  owner: data.owner,
-                  repo: data.repo,
-                  check_run_id: existing.data[0].id,
-                  status: data.status,
-                  ...(data.conclusion ? {conclusion: data.conclusion} : {})
-                });
-                return updated.data;
-              } else {
-                core.info(`No existing check, creating a new one with status ${data.status} and conclusion: ${data.conclusion}`);
-                const result = await github.checks.create({
-                  owner: data.owner,
-                  repo: data.repo,
-                  name: data.check_name,
-                  status: data.status,
-                  head_sha: data.head_sha,
-                  ...(data.conclusion ? {conclusion: data.conclusion} : {})
-                });
-                return result.data;
-              }
-            } catch (err) {
-              core.setFailed(`Request failed with error ${err}`);
-            }
+    - name: cypress job
+      uses: actions/github-script@v3
+      with:
+        script: |
+          setTimeout(() => {
+            console.log("Slept for 5 minutes");
+          }, 200);
