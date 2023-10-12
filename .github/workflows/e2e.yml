@@ -1,0 +1,24 @@
+name: Update Check Run
+on:
+  workflow_dispatch:
+    inputs:
+      status:
+        description: 'Current status of the action'
+        required: true
+        default: 'neutral'
+
+
+jobs:
+  create-check-run:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Create Check Run
+        uses: peter-evans/create-check@v1
+        with:
+          name: Run e2e
+          conclusion: ${{ github.event.inputs.status }}
+          completed: false
