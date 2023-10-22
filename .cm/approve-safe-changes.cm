@@ -3,13 +3,15 @@ automations:
   safe_changes:
     # Triggered for any changes that only affect formatting, documentation, tests, or images
     if:
-      - {{ pr.labels | match(list=['Approve']) | some }}
+      - true
     # Apply a safe change label, approve the PR and explain why in a comment.
     run: 
       - action: add-label@v1
         args:
           label: 'safe-change'
-      - action: approve@v1
+      - action: merge@v1
+        args:
+          wait_for_all_checks: true
 
 # These custom expressions are used in the safe_changes automation
 is:
