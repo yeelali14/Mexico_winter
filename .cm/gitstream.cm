@@ -1,17 +1,19 @@
+# -*- mode: yaml -*-
+
+manifest:
+  version: 1.0
+
 automations:
-  estimated_time_to_review:
+  merge_automation:
     if:
-      - {{ files | match(list=['README.md']) | some }}
+      - {{ files | length == 3 }}
     run:
-      - action: add-label@v1
+      - action: merge@v1
+  catch_deprecated:
+    if:
+      - {{ files | length == 1 }}
+    run:
+      - action: request-changes@v1
         args:
-          label: "{{ calc.etr }} min review"
-          color: {{ 'E94637' if (calc.etr >= 20) else ('FBBD10' if (calc.etr >= 5) else '36A853') }}
-      - action: add-label@v1
-        args:
-          label: "no-problem!"
-          color: {{ 'E94637' if (calc.etr >= 20) else ('FBBD10' if (calc.etr >= 5) else '36A853') }}
-
-
-calc:
-  etr: {{ branch | estimatedReviewTime }}
+          comment: |
+            Requested changes 
